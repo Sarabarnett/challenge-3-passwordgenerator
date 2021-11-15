@@ -1,4 +1,3 @@
-// Assignment code here
 //1st- button is clicked to generate password
   //select desired criteria (pop up windows)
     //length (8-128 characters) 
@@ -27,42 +26,67 @@
       generatePassword();
     }
 
-    // return passwordLength;
+      //convert password length from string to integer
+      passwordLength = parseInt(passwordLength);
+      console.log(passwordLength);
 
 
     //confirm special characters
-    var specialCharacter = window.confirm("Click OK to include special characters.");
-      if (specialCharacter === true) {
-        specialCharacter=special;
+    var specialCharacterConfirm = window.confirm("Click OK to include special characters.");
+      if (specialCharacterConfirm === true) {
+        specialCharacterConfirm = special;
       }
-      else if (specialCharacter === false) {
-        specialCharacter="";
-      }
-
-      //confirm numberic characters
-      var numeric = window.confirm ("Click OK to include numeric characters.");
-      if (numeric === true) {
-        numeric = num;
-      }
-      else if (numeric === false) {
-        numeric = "";
+      else if (specialCharacterConfirm === false) {
+        specialCharacterConfirm= "";
       }
 
-      var lowerCase = window.confirm("Click OK to include lowercase characters.");
-      if (lowerCase === true) {
-        lowerCase = lower;
+
+      //confirm numeric characters
+      var numericConfirm = window.confirm ("Click OK to include numeric characters.");
+      if (numericConfirm === true) {
+        numericConfirm = num;
       }
-      else if (lowerCase === false) {
-        lowerCase = "";
+      else if (numericConfirm === false) {
+        numericConfirm = "";
+      }
+      
+
+      //confirm lowercase characters
+      var lowerCaseConfirm = window.confirm("Click OK to include lowercase characters.");
+      if (lowerCaseConfirm === true) {
+        lowerCaseConfirm = lower;
+      }
+      else if (lowerCaseConfirm === false) {
+        lowerCaseConfirm = "";
+      }
+      
+
+      //confirm uppercase characters
+      var upperCaseConfirm = window.confirm("Click OK to include uppercase characters.");
+      if (upperCaseConfirm === true) {
+        upperCaseConfirm = upper;
+      }
+      else if (upperCaseConfirm === false) {
+        upperCaseConfirm = "";
       }
 
-      var upperCase = window.confirm("Click OK to include uppercase characters.");
-      if (upperCase === true) {
-        upperCase = upper;
-      }
-      else if (upperCase === false) {
-        upperCase = "";
-      }
+      //concantenate variables for selected criteria characters
+      var selectedCriteria = specialCharacterConfirm.concat(numericConfirm, lowerCaseConfirm, upperCaseConfirm);
+      console.log(selectedCriteria);
+
+      //create new array where generated characters will be stored
+      var generatedPassword = new Array();
+
+      //for loop to assign each length index a character
+      for(var i=0; i < passwordLength; i++) {
+        
+        var character = selectedCriteria.charAt(
+          Math.floor(Math.random() * selectedCriteria.length)
+        );
+          generatedPassword.push(character);
+      };
+
+      return generatedPassword.join('');
 
   };
 
